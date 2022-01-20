@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>טפסים</title>
+    <style>
+        #form-wrapper {
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%, -50%);
+        }
+        #form-wrapper form table {
+            border-collapse:collapse;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="form-wrapper">
+        <form action="https://petel.weizmann.ac.il/physics/login/index.php" method="post">
+            <table border="1">
+                <tr>
+                    <th>
+                        <h1>Sign up</h1>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" />
+                        <label>:שם משתמש</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" />
+                        <label>:סיסמה</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select>
+                            <option>זכר</option>
+                            <option>חתול</option>
+                        </select>
+                        <label>מין</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="reset" />
+                        <input type="submit" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
