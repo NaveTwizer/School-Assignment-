@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <style type="text/css">
+        .errors {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <form action="page.html" method="get" id="form">
+        <div id="usernameError" class="errors"></div>
+        <div id="username-wrapper">
+            <label>Username: </label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div id="passwordError" class="errors"></div>
+        <div id="password-wrapper">
+            <label>Password: </label>
+            <input type="password" id="password" name="password" required >
+        </div>
+        <div>
+            <span>
+                <input type="reset">
+            </span>
+            <span>
+                <input type="submit" id="sub">
+            </span>
+        </div>
+    </form>
+    <script>
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+        const usernameError = document.getElementById("usernameError");
+        const passwordError = document.getElementById("passwordError");
+        const loginBtn = document.getElementById("sub");
+        let errors;
+        
+        const checkPassword = (password) => {
+                const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i",
+             "j", "k", "m", "n", "l", "o", "p", "q", "r", "s", "t", "u", "v",
+            "w", "x", "y", "z"];
+            const LETTERS = letters.map(letter => letter.toUpperCase());
+            const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            strongTest0 = false; // contains lower case check
+            strongTest1 = false; // contains uppwer case check
+            strongTest2 = false; // contains number check
+            const errors = [];
+            for (let i = 0; i < letters.length; i++) {
+                if (letters.includes(password.charAt(i))) {
+                    strongTest0 = true;
+                }
+                if (LETTERS.includes(password.charAt(i))) {
+                    strongTest1 = true;
+                }
+                if (numbers.includes(password.charAt(i))) {
+                    strongTest2 = true;
+                }
+            }
+            if (strongTest0 == false) {
+                document.getElementById("passwordError").innerHTML = "Password needs to contain lower case letters";
+                return false;
+            }
+            if (strongTest1 == false) {
+                document.getElementById("passwordError").innerHTML = "Password needs to contain upper case letters";
+                return false;
+            }
+            if (strongTest2 == false) {
+                document.getElementById("passwordError").innerHTML = "Password needs to contain numbers"; 
+                return false;
+            }
+            return true;
+    }
+        loginBtn.addEventListener("click", (e) => {
+            errors = [];
+            const usrname = username.value;
+            const pswd = password.value;
+            usernameError.innerHTML = "";
+            passwordError.innerHTML = "";
+            if (usrname.length < 7 ) {
+                errors.push("short username");
+                usernameError.innerHTML = "Username too short";
+            }
+            if (usrname.length > 25) {
+                errors.push("long username");
+                usernameError.innerHTML = "Username too long";
+            }
+            if (pswd.length > 30) {
+                errors.push("long password");
+                passwordError.innerHTML = "Password too long";
+            } 
+            if (pswd.length < 7) {
+                errors.push("short password");
+                passwordError.innerHTML = "Password too short";
+            }
+            if (!checkPassword(pswd)) {
+                errors.push("weak password");
+            }
+            if (errors.length != 0) {
+                e.preventDefault();
+            } else {
+                alert("Data saved!");
+            }
+        })
+    </script>
+</body>
+</html>
